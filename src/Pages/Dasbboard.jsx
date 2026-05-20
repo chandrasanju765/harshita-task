@@ -11,7 +11,7 @@ export default function Dashboard() {
 
   const handleOpen = () => setOpen(true);
 
-  const handleClose = () => setOpen(false);
+  const handleClose = () => setOpen(false);   
 
   useEffect(() => {
     getChartData();
