@@ -11,31 +11,32 @@ export default function Dashboard() {
 
   const handleOpen = () => setOpen(true);
 
-  const handleClose = () => setOpen(false);   
-
- useEffect(() => {
-  setChartData([
-    getRoleCount(Constants.admin),
-    getRoleCount(Constants.maintainer),
-    getRoleCount(Constants.subadmin),
-    getRoleCount(Constants.user),
-  ]);
-}, [tableData]);
-
+  const handleClose = () => setOpen(false);
 
   const handleFormData = (user) => {
     handleClose();
     setTableData([...tableData, user]);
   };
 
-  const getRoleCount = (roleName) => {
-    let filteredArray = tableData.filter((item) => item.role === roleName);
+  useEffect(() => {
+    const getRoleCount = (roleName) => {
+      let filteredArray = tableData.filter(
+        (item) => item.role === roleName
+      );
 
-    return {
-      name: roleName,
-      value: filteredArray.length,
+      return {
+        name: roleName,
+        value: filteredArray.length,
+      };
     };
-  };
+
+    setChartData([
+      getRoleCount(Constants.admin),
+      getRoleCount(Constants.maintainer),
+      getRoleCount(Constants.subadmin),
+      getRoleCount(Constants.user),
+    ]);
+  }, [tableData]);
 
   return (
     <div className="bg-light min-vh-100">
@@ -45,16 +46,18 @@ export default function Dashboard() {
             className="col-md-2 bg-dark text-white p-4 shadow"
             style={{ minHeight: "100vh" }}
           >
-            <h3 className="fw-bold border-bottom pb-3 mb-4">Admin Panel</h3>
+            <h3 className="fw-bold border-bottom pb-3 mb-4">
+              Admin Panel
+            </h3>
 
             <ul className="nav flex-column">
               <li className="nav-item mb-2">
                 <button
-  type="button"
-  className="nav-link active bg-primary text-white rounded border-0 w-100 text-start"
->
-  Dashboard
-</button>
+                  type="button"
+                  className="nav-link active bg-primary text-white rounded border-0 w-100 text-start"
+                >
+                  Dashboard
+                </button>
               </li>
             </ul>
           </div>
@@ -62,9 +65,13 @@ export default function Dashboard() {
           <div className="col-md-10 p-4">
             <div className="d-flex justify-content-between align-items-center mb-4">
               <div>
-                <h2 className="fw-bold mb-1 text-dark">Dashboard</h2>
+                <h2 className="fw-bold mb-1 text-dark">
+                  Dashboard
+                </h2>
 
-                <p className="text-muted mb-0">Manage users and analytics</p>
+                <p className="text-muted mb-0">
+                  Manage users and analytics
+                </p>
               </div>
 
               <button
@@ -89,18 +96,24 @@ export default function Dashboard() {
                   <h6 className="text-muted">Admins</h6>
 
                   <h3 className="fw-bold text-danger">
-                    {tableData.filter((item) => item.role === "Admin").length}
+                    {
+                      tableData.filter(
+                        (item) => item.role === "Admin"
+                      ).length
+                    }
                   </h3>
                 </div>
               </div>
+
               <div className="col-md-3">
                 <div className="card border-0 shadow-sm text-center p-3">
                   <h6 className="text-muted">Subadmin</h6>
 
                   <h3 className="fw-bold text-danger">
                     {
-                      tableData.filter((item) => item.role === "SubAdmin")
-                        .length
+                      tableData.filter(
+                        (item) => item.role === "SubAdmin"
+                      ).length
                     }
                   </h3>
                 </div>
@@ -112,8 +125,9 @@ export default function Dashboard() {
 
                   <h3 className="fw-bold text-success">
                     {
-                      tableData.filter((item) => item.role === "Maintainer")
-                        .length
+                      tableData.filter(
+                        (item) => item.role === "Maintainer"
+                      ).length
                     }
                   </h3>
                 </div>
@@ -124,7 +138,11 @@ export default function Dashboard() {
                   <h6 className="text-muted">Users</h6>
 
                   <h3 className="fw-bold text-warning">
-                    {tableData.filter((item) => item.role === "User").length}
+                    {
+                      tableData.filter(
+                        (item) => item.role === "User"
+                      ).length
+                    }
                   </h3>
                 </div>
               </div>
@@ -134,7 +152,9 @@ export default function Dashboard() {
               <div className="col-md-8">
                 <div className="card border-0 shadow-sm h-100">
                   <div className="card-body">
-                    <h5 className="fw-bold mb-3">Users List</h5>
+                    <h5 className="fw-bold mb-3">
+                      Users List
+                    </h5>
 
                     <DataTable data={tableData} />
                   </div>
@@ -144,7 +164,9 @@ export default function Dashboard() {
               <div className="col-md-4">
                 <div className="card border-0 shadow-sm h-100">
                   <div className="card-body">
-                    <h5 className="fw-bold mb-3">User Analytics</h5>
+                    <h5 className="fw-bold mb-3">
+                      User Analytics
+                    </h5>
 
                     <div
                       className="d-flex justify-content-center align-items-center"
@@ -156,6 +178,7 @@ export default function Dashboard() {
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </div>
