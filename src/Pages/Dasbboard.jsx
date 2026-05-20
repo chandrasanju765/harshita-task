@@ -13,9 +13,15 @@ export default function Dashboard() {
 
   const handleClose = () => setOpen(false);   
 
-  useEffect(() => {
-    getChartData();
-  }, [tableData]);
+ useEffect(() => {
+  setChartData([
+    getRoleCount(Constants.admin),
+    getRoleCount(Constants.maintainer),
+    getRoleCount(Constants.subadmin),
+    getRoleCount(Constants.user),
+  ]);
+}, [tableData]);
+
 
   const handleFormData = (user) => {
     handleClose();
@@ -31,15 +37,6 @@ export default function Dashboard() {
     };
   };
 
-  const getChartData = () => {
-    setChartData([
-      getRoleCount(Constants.admin),
-      getRoleCount(Constants.maintainer),
-      getRoleCount(Constants.subadmin),
-      getRoleCount(Constants.user),
-    ]);
-  };
-
   return (
     <div className="bg-light min-vh-100">
       <div className="container-fluid">
@@ -52,12 +49,12 @@ export default function Dashboard() {
 
             <ul className="nav flex-column">
               <li className="nav-item mb-2">
-                <a
-                  href="#"
-                  className="nav-link active bg-primary text-white rounded"
-                >
-                  Dashboard
-                </a>
+                <button
+  type="button"
+  className="nav-link active bg-primary text-white rounded border-0 w-100 text-start"
+>
+  Dashboard
+</button>
               </li>
             </ul>
           </div>
